@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block con %}
+
+
+    <div class="container mt-5 mb-5">
+        <h3 class="mt-5 text-center" style="font-weight: bolder;">번역해줘요😫</h3>
+    <form method="post">
+    {% csrf_token %}
+            <div class="row mt-5">
+                <div class="col-lg-5">
+                    <textarea class="form-control" name="before" placeholder="번역할 내용을 입력하세요." style="height: 350px; font-weight: bold;">{{ bef }}</textarea>
+                </div>
+                <div class="col-lg-2 text-center" style="margin: auto;">
+                    <select class="form-select" name="from" multiple aria-label="multiple select example">
+                        <option value="ko"{% if f == "ko" or not f %} selected {% endif %}>Korean</option>
+                        <option value="en"{% if f == "en" %} selected {% endif %}>English</option>
+                        <option value="vi"{% if f == "vi" %} selected {% endif %}>Vietnamese</option>
+                        <option value="it"{% if f == "it" %} selected {% endif %}>Italian</option>
+                    </select>
+                    <div class="mt-3 mb-3 text-center">
+                        <button class="btn btn-dark">번역</button>
+                    </div>
+                    <select class="form-select" name="to" multiple aria-label="multiple select example">
+                        <option value="ko"{% if f == "ko" %} selected {% endif %}>Korean</option>
+                        <option value="en"{% if f == "en" or not t %} selected {% endif %}>English</option>
+                        <option value="vi"{% if f == "vi" %} selected {% endif %}>Vietnamese</option>
+                        <option value="it"{% if f == "it" %} selected {% endif %}>Italian</option>
+                    </select>
+                </div>         
+                <div class="col-lg-5">
+                    <textarea class="form-control" name="after" style="height: 350px;">{{ aft }}</textarea>
+                </div>
+            </div>      
+    </div>
+    </form>
+{% endblock %}
